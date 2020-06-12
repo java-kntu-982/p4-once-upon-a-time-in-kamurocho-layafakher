@@ -1,5 +1,6 @@
 package model;
 import javafx.scene.control.Label;
+import javafx.scene.shape.Circle;
 
 
 public class Person {
@@ -12,7 +13,15 @@ public class Person {
     private double XSpeed;
     private double YSpeed;
     private boolean isAlive;
+    private Circle circle;
 
+    public Circle getCircle() {
+        return circle;
+    }
+
+    public void setCircle(Circle circle) {
+        this.circle = circle;
+    }
 
     public Person(String name) {
         this.name = name;

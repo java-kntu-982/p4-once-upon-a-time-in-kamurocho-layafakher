@@ -507,6 +507,7 @@ public class Controller {
         Scene scene=new Scene(root,900,600);
         stage.setScene(scene);
         return stage;
+
     }
 }
 

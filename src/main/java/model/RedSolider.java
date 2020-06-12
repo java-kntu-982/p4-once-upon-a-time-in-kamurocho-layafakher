@@ -1,8 +1,20 @@
 package model;
 
+import javafx.scene.shape.Circle;
+
 public class RedSolider extends EnemySolider{
     public RedSolider(double health, double attack, Integer attackRange) {
         super(health, attack, attackRange);
+    }
+
+    @Override
+    public Circle getCircle() {
+        return super.getCircle();
+    }
+
+    @Override
+    public void setCircle(Circle circle) {
+        super.setCircle(circle);
     }
 
     @Override
