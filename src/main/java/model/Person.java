@@ -2,7 +2,6 @@ package model;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
 
-
 public class Person {
     private String name;
     private double Health;
