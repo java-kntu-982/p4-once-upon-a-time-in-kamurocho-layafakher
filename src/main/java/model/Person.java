@@ -12,7 +12,7 @@ public class Person {
     private double y;
     private double XSpeed;
     private double YSpeed;
-    private boolean isAlive;
+    private boolean isAlive=true;
     private Circle circle;
 
     public Circle getCircle() {

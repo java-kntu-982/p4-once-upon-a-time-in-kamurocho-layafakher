@@ -6,7 +6,7 @@ public class RedSolider extends EnemySolider{
     public RedSolider(double health, double attack, Integer attackRange) {
         super(health, attack, attackRange);
     }
-
+    
     @Override
     public Circle getCircle() {
         return super.getCircle();
@@ -16,7 +16,6 @@ public class RedSolider extends EnemySolider{
     public void setCircle(Circle circle) {
         super.setCircle(circle);
     }
-
     @Override
     public boolean isAlive() {
         return super.isAlive();
@@ -79,7 +78,7 @@ public class RedSolider extends EnemySolider{
 
     @Override
     public double getXSpeed() {
-        return super.getXSpeed();
+        return 3;
     }
 
     @Override
@@ -89,7 +88,7 @@ public class RedSolider extends EnemySolider{
 
     @Override
     public double getYSpeed() {
-        return super.getYSpeed();
+        return 3;
     }
 
     @Override

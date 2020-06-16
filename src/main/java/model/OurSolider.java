@@ -50,4 +50,23 @@ public class OurSolider extends Person{
 
     private Integer fieldOfView;
 
+    @Override
+    public double getXSpeed() {
+        return 4;
+    }
+
+    @Override
+    public void setXSpeed(double XSpeed) {
+        super.setXSpeed(XSpeed);
+    }
+
+    @Override
+    public double getYSpeed() {
+        return 4;
+    }
+
+    @Override
+    public void setYSpeed(double YSpeed) {
+        super.setYSpeed(YSpeed);
+    }
 }
