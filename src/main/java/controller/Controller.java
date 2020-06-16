@@ -202,7 +202,6 @@ public class Controller {
                 level1.setScaleY(1.2);
             }
         });
-
         level1.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -241,10 +240,12 @@ public class Controller {
         level2.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                try {
-                    Controller.runLevel2().show();
-                }catch (FileNotFoundException e){
-                    e.getStackTrace();
+                if (Level1.isWin()) {
+                    try {
+                        Controller.runLevel2().show();
+                    } catch (FileNotFoundException e) {
+                        e.getStackTrace();
+                    }
                 }
             }
         });

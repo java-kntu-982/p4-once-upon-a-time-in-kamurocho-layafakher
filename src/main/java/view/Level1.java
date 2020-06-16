@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import model.GraySolider;
 import model.OurSolider;
 import model.RedSolider;
-
 import java.util.*;
 
 public class Level1 {
@@ -27,7 +26,10 @@ public class Level1 {
     private static Map<Circle,OurSolider> circleOurSoliderMap=new HashMap<>();
     private static Map<Circle,RedSolider> circleRedSoliderHashMap=new HashMap<>();
     private static Scene scene;
-    private static boolean isWin;
+    private static boolean isWin=false;
+    public static void setIsWin(boolean isWin) {
+        Level1.isWin = isWin;
+    }
     public static boolean isWin() {
         return isWin;
     }
@@ -38,6 +40,7 @@ public class Level1 {
 
         for (int i=0;i<60;i++){
             RedSolider redSolider=new RedSolider(1000,500,1);
+            redSolider.setAlive(true);
             redSoliders.add(redSolider);
         }
         for (int i=0;i<120;i++){
@@ -47,6 +50,14 @@ public class Level1 {
         Circle circle1=new Circle(50,Color.WHITE);
         circle1.setCenterX(400);circle1.setCenterY(400);
         round1();
+        boolean b=false;
+        for (RedSolider redSolider:circleRedSoliderHashMap.values()){
+          if (redSolider.isAlive())
+              b=true;
+        }
+        if (!b){
+            setIsWin(true);
+        }
         circle1.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -101,19 +112,44 @@ public class Level1 {
         }
         y=50;
         for (int i=0;i<20;i++){
-            for (RedSolider redSolider:redSoliders){
+
                 Circle circle=new Circle();
                 circle.setFill(Color.RED);
                 circle.setCenterY(y);
-                circle.setCenterX(50);
+                circle.setCenterX(500);
                 circle.setRadius(8);
                 redCircles.add(circle);
                 redSoliders.get(i).setCircle(circle);
-                circleRedSoliderHashMap.put(circle,redSolider);
+                circleRedSoliderHashMap.put(circle,redSoliders.get(i));
                 y+=30;
-            }
+
         }
-        final int[] i = {0};
+        y=50;
+        for (int i=20;i<40;i++){
+                Circle circle=new Circle();
+                circle.setFill(Color.RED);
+                circle.setCenterY(y);
+                circle.setCenterX(300);
+                circle.setRadius(8);
+                redCircles.add(circle);
+                redSoliders.get(i).setCircle(circle);
+                circleRedSoliderHashMap.put(circle,redSoliders.get(i));
+                y+=30;
+
+        }
+        y=50;
+        for (int i=40;i<60;i++){
+            Circle circle=new Circle();
+            circle.setFill(Color.RED);
+            circle.setCenterY(y);
+            circle.setCenterX(100);
+            circle.setRadius(8);
+            redCircles.add(circle);
+            redSoliders.get(i).setCircle(circle);
+            circleRedSoliderHashMap.put(circle,redSoliders.get(i));
+            y+=30;
+        }
+
         final int[] n = {0};
         AnimationTimer animationTimer;
         animationTimer=new AnimationTimer() {
@@ -163,7 +199,7 @@ public class Level1 {
                                 circle1.setCenterY(0);
                             }
                                 circleOurSoliderMap.get(circle1).setHealth(circleOurSoliderMap.get(circle1).getHealth() - (0.005 ));
-                                circleRedSoliderHashMap.get(circle).setHealth(circleRedSoliderHashMap.get(circle).getHealth() - (0.05 * circleOurSoliderMap.get(circle1).getAttack()));
+                                circleRedSoliderHashMap.get(circle).setHealth(circleRedSoliderHashMap.get(circle).getHealth() - (0.005 * circleOurSoliderMap.get(circle1).getAttack()));
                                 if (circleRedSoliderHashMap.get(circle).getHealth()<=0) {
                                     circleRedSoliderHashMap.get(circle).setAlive(false);
                                     root.getChildren().remove(circle);
@@ -233,7 +269,6 @@ public class Level1 {
                                     if (ourCircles.get(ourCircles.size()-1).getFill().equals(Color.PINK)){
                                         ourCircles.get(ourCircles.size()-1).setCenterX(e.getX());
                                         ourCircles.get(ourCircles.size()-1).setCenterY(e.getY());
-
                                     }
                                     if (circle.getFill().equals(Color.PINK)){
                                         circle.setCenterX(e.getX());
@@ -249,51 +284,49 @@ public class Level1 {
                         }
                     }
                 });
-                for (RedSolider redSolider:circleRedSoliderHashMap.values()){
-                    if (redSolider.isAlive()){
-                        for (Circle circle:redCircles){
-                            for (Circle circle1:ourCircles) {
-                                if (circle.getCenterX() < circle1.getCenterX() - circleOurSoliderMap.get(circle1).getFieldOfView() * 10) {
-                                    circle.setCenterX(circle.getCenterX() + redSoliders.get(0).getXSpeed() * 0.05);
-                                } else {
-                                    if (circle1.getCenterY() < 680) {
-                                        circle1.setCenterX(circle.getCenterX());
-                                        circle1.setCenterY(circle1.getCenterY() + circleOurSoliderMap.get(circle1).getYSpeed() * 0.0005);}
-                                    else {
-                                        circle1.setCenterY(0);
-                                    }
-                                    circleOurSoliderMap.get(circle1).setHealth(circleOurSoliderMap.get(circle1).getHealth() - (0.005 ));
-                                    circleRedSoliderHashMap.get(circle).setHealth(circleRedSoliderHashMap.get(circle).getHealth() - (0.05 * circleOurSoliderMap.get(circle1).getAttack()));
-                                    if (circleRedSoliderHashMap.get(circle).getHealth()<=0) {
-                                        circleRedSoliderHashMap.get(circle).setAlive(false);
-                                        root.getChildren().remove(circle);
-                                    }
-                                    if (circle.getCenterX()>970){
-                                        if (circle.getCenterY()>140&&circle.getCenterY()<350){
 
-                                        }
+
+
+
+                    for (Circle circle:redCircles){
+                        for (Circle circle1:ourCircles) {
+                            if (circle.getCenterX() < circle1.getCenterX() - circleOurSoliderMap.get(circle1).getFieldOfView() * 10) {
+                                circle.setCenterX(circle.getCenterX() + redSoliders.get(0).getXSpeed() * 0.05);
+                            } else {
+                                if (circle1.getCenterY() < 680) {
+                                    circle1.setCenterX(circle.getCenterX());
+                                    circle1.setCenterY(circle1.getCenterY() + circleOurSoliderMap.get(circle1).getYSpeed() * 0.0005);}
+                                else {
+                                    circle1.setCenterY(0);
+                                }
+                                circleOurSoliderMap.get(circle1).setHealth(circleOurSoliderMap.get(circle1).getHealth() - (0.005 ));
+                                circleRedSoliderHashMap.get(circle).setHealth(circleRedSoliderHashMap.get(circle).getHealth() - (0.05 * circleOurSoliderMap.get(circle1).getAttack()));
+                                if (circleRedSoliderHashMap.get(circle).getHealth()<=0) {
+                                    circleRedSoliderHashMap.get(circle).setAlive(false);
+                                    root.getChildren().remove(circle);
+                                }
+                                if (circle.getCenterX()>970){
+                                    if (circle.getCenterY()>140 && circle.getCenterY()<350){
+                                        Main.container.setDurability(Main.container.getDurability()-0.1*circleRedSoliderHashMap.get(circle).getAttack());
                                     }
-                                    if (circleOurSoliderMap.get(circle1).getHealth()<=0){
-                                        circleOurSoliderMap.get(circle1).setAlive(false);
-                                        root.getChildren().remove(circle1);
+                                    if (circle.getCenterY()>370 && circle.getCenterY()<550){
+                                        Main.truck.setDurability(Main.truck.getDurability()-0.1*circleRedSoliderHashMap.get(circle).getAttack());
                                     }
+
+                                }
+                                if (circleOurSoliderMap.get(circle1).getHealth()<=0){
+                                    circleOurSoliderMap.get(circle1).setAlive(false);
+                                    root.getChildren().remove(circle1);
                                 }
                             }
                         }
                     }
-                    else {
-                        isWin=true;
-                    }
                 }
 
-
-
-            }
         };
         animationTimer.start();
         root.getChildren().addAll(redCircles);
         root.getChildren().addAll(ourCircles);
-
     }
 
 
