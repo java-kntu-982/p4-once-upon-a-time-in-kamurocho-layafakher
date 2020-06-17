@@ -192,6 +192,8 @@ public class Controller {
         return stage;
     }
     public static Stage missionMenu(ImageView imageView1){
+        View.mediaPlayer.stop();
+        View.mediaPlayer1.play();
         Group root1=new Group(imageView1);
         Stage stage=new Stage();
         Label level1=new Label("\t\t\t\tLevel 1");
@@ -219,7 +221,6 @@ public class Controller {
                 }
             }
         });
-
         level1.setTextFill(Color.BLACK);
         level1.setFont(Font.font("Cambria",50));
         Label level2=new Label("\t\t\t\tLevel 2");

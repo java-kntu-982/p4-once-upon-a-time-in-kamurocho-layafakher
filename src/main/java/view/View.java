@@ -25,21 +25,26 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Timer;
 import java.util.TimerTask;
 public class View extends Application {
+    public  static MediaPlayer mediaPlayer;
+    public  static MediaPlayer mediaPlayer1;
     public void start(Stage stage) throws FileNotFoundException {
         Image image = new Image(new FileInputStream("./src/main/java/mnm.PNG"));
         ImageView imageView = new ImageView(image);
         String musicFile = "./src/main/java/music.mp3";
         Media sound = new Media(new File(musicFile).toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.setVolume(20);
         mediaPlayer.play();
+        String musicFile1 = "./src/main/java/mu2.mp3";
+        Media sound1 = new Media(new File(musicFile1).toURI().toString());
+        mediaPlayer1 = new MediaPlayer(sound1);
+        mediaPlayer1.setVolume(20);
         imageView.setX(0);
         imageView.setY(0);
         imageView.setFitHeight(600);

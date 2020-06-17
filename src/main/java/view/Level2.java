@@ -40,12 +40,12 @@ public class Level2 {
             redSolider.setAlive(true);
             redSoliders.add(redSolider);
         }
-        for (int i=180;i<280;i++){
+        for (int i=180;i<279;i++){
             RedSolider redSolider=new RedSolider(800,1800,1);
             redSolider.setAlive(true);
             redSoliders.add(redSolider);
         }
-        RedSolider r=new RedSolider(20000,5000,1);
+        RedSolider r=new RedSolider(20000,12000,1);
         r.setAlive(true);
         redSoliders.add(r);
         round1();
