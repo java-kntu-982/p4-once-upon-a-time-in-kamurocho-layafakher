@@ -12,21 +12,20 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import model.GraySolider;
-import model.OurSolider;
-import model.RedSolider;
+import model.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 
 public class Level2 {
-    private static ArrayList<RedSolider> redSoliders=new ArrayList<>();
-    private static ArrayList<Circle> redCircles=new ArrayList<>();
+    private static ArrayList<EnemySolider> enemySoliders=new ArrayList<>();
+    private static ArrayList<Circle> enemyCircles=new ArrayList<>();
     private static ArrayList<Circle> ourCircles=new ArrayList<>();
     private static Group root;
     private static Map<Circle, OurSolider> circleOurSoliderMap=new HashMap<>();
-    private static Map<Circle,RedSolider> circleRedSoliderHashMap=new HashMap<>();
+    private static Map<Circle,EnemySolider> circleRedSoliderHashMap=new HashMap<>();
     private static Scene scene;
     private static boolean isWin;
     public static boolean isWin() {
@@ -38,20 +37,20 @@ public class Level2 {
         for (int i=0;i<180;i++){
             RedSolider redSolider=new RedSolider(1000,500,1);
             redSolider.setAlive(true);
-            redSoliders.add(redSolider);
+            enemySoliders.add(redSolider);
         }
         for (int i=180;i<279;i++){
-            RedSolider redSolider=new RedSolider(800,1800,1);
-            redSolider.setAlive(true);
-            redSoliders.add(redSolider);
+            YellowSolider yellowSolider =new YellowSolider(800,1800,1);
+            yellowSolider.setAlive(true);
+            enemySoliders.add(yellowSolider);
         }
-        RedSolider r=new RedSolider(20000,12000,1);
-        r.setAlive(true);
-        redSoliders.add(r);
+        EnemySolider bossLevel2=new RedSolider(20000,12000,1);
+        bossLevel2.setAlive(true);
+        enemySoliders.add(bossLevel2);
         round1();
         boolean b=false;
-        for (RedSolider redSolider:circleRedSoliderHashMap.values()){
-            if (redSolider.isAlive())
+        for (EnemySolider enemySolider:circleRedSoliderHashMap.values()){
+            if (enemySolider.isAlive())
                 b=true;
         }
         if (b){
@@ -91,9 +90,9 @@ public class Level2 {
             circle.setCenterY(y);
             circle.setCenterX(500);
             circle.setRadius(8);
-            redCircles.add(circle);
-            redSoliders.get(i).setCircle(circle);
-            circleRedSoliderHashMap.put(circle,redSoliders.get(i));
+            enemyCircles.add(circle);
+            enemySoliders.get(i).setCircle(circle);
+            circleRedSoliderHashMap.put(circle,enemySoliders.get(i));
             y+=30;
         }
         y=50;
@@ -103,9 +102,9 @@ public class Level2 {
             circle.setCenterY(y);
             circle.setCenterX(450);
             circle.setRadius(7);
-            redCircles.add(circle);
-            redSoliders.get(i).setCircle(circle);
-            circleRedSoliderHashMap.put(circle,redSoliders.get(i));
+            enemyCircles.add(circle);
+            enemySoliders.get(i).setCircle(circle);
+            circleRedSoliderHashMap.put(circle,enemySoliders.get(i));
             y+=30;
 
         }
@@ -116,9 +115,9 @@ public class Level2 {
             circle.setCenterY(y);
             circle.setCenterX(400);
             circle.setRadius(7);
-            redCircles.add(circle);
-            redSoliders.get(i).setCircle(circle);
-            circleRedSoliderHashMap.put(circle,redSoliders.get(i));
+            enemyCircles.add(circle);
+            enemySoliders.get(i).setCircle(circle);
+            circleRedSoliderHashMap.put(circle,enemySoliders.get(i));
             y+=30;
         }
         y=50;
@@ -128,9 +127,9 @@ public class Level2 {
             circle.setCenterY(y);
             circle.setCenterX(350);
             circle.setRadius(8);
-            redCircles.add(circle);
-            redSoliders.get(i).setCircle(circle);
-            circleRedSoliderHashMap.put(circle,redSoliders.get(i));
+            enemyCircles.add(circle);
+            enemySoliders.get(i).setCircle(circle);
+            circleRedSoliderHashMap.put(circle,enemySoliders.get(i));
             y+=30;
         }
         y=50;
@@ -140,9 +139,9 @@ public class Level2 {
             circle.setCenterY(y);
             circle.setCenterX(300);
             circle.setRadius(8);
-            redCircles.add(circle);
-            redSoliders.get(i).setCircle(circle);
-            circleRedSoliderHashMap.put(circle,redSoliders.get(i));
+            enemyCircles.add(circle);
+            enemySoliders.get(i).setCircle(circle);
+            circleRedSoliderHashMap.put(circle,enemySoliders.get(i));
             y+=30;
         }
         y=50;
@@ -152,9 +151,9 @@ public class Level2 {
             circle.setCenterY(y);
             circle.setCenterX(250);
             circle.setRadius(7);
-            redCircles.add(circle);
-            redSoliders.get(i).setCircle(circle);
-            circleRedSoliderHashMap.put(circle,redSoliders.get(i));
+            enemyCircles.add(circle);
+            enemySoliders.get(i).setCircle(circle);
+            circleRedSoliderHashMap.put(circle,enemySoliders.get(i));
             y+=30;
         }
         y=50;
@@ -164,9 +163,9 @@ public class Level2 {
             circle.setCenterY(y);
             circle.setCenterX(200);
             circle.setRadius(8);
-            redCircles.add(circle);
-            redSoliders.get(i).setCircle(circle);
-            circleRedSoliderHashMap.put(circle,redSoliders.get(i));
+            enemyCircles.add(circle);
+            enemySoliders.get(i).setCircle(circle);
+            circleRedSoliderHashMap.put(circle,enemySoliders.get(i));
             y+=30;
         }
         y=50;
@@ -176,9 +175,9 @@ public class Level2 {
             circle.setCenterY(y);
             circle.setCenterX(150);
             circle.setRadius(8);
-            redCircles.add(circle);
-            redSoliders.get(i).setCircle(circle);
-            circleRedSoliderHashMap.put(circle,redSoliders.get(i));
+            enemyCircles.add(circle);
+            enemySoliders.get(i).setCircle(circle);
+            circleRedSoliderHashMap.put(circle,enemySoliders.get(i));
             y+=30;
         }
         y=50;
@@ -188,9 +187,9 @@ public class Level2 {
             circle.setCenterY(y);
             circle.setCenterX(100);
             circle.setRadius(8);
-            redCircles.add(circle);
-            redSoliders.get(i).setCircle(circle);
-            circleRedSoliderHashMap.put(circle,redSoliders.get(i));
+            enemyCircles.add(circle);
+            enemySoliders.get(i).setCircle(circle);
+            circleRedSoliderHashMap.put(circle,enemySoliders.get(i));
             y+=30;
         }
         y=50;
@@ -200,9 +199,9 @@ public class Level2 {
             circle.setCenterY(y);
             circle.setCenterX(80);
             circle.setRadius(8);
-            redCircles.add(circle);
-            redSoliders.get(i).setCircle(circle);
-            circleRedSoliderHashMap.put(circle,redSoliders.get(i));
+            enemyCircles.add(circle);
+            enemySoliders.get(i).setCircle(circle);
+            circleRedSoliderHashMap.put(circle,enemySoliders.get(i));
             y+=30;
         }
         y=50;
@@ -212,9 +211,9 @@ public class Level2 {
             circle.setCenterY(y);
             circle.setCenterX(50);
             circle.setRadius(8);
-            redCircles.add(circle);
-            redSoliders.get(i).setCircle(circle);
-            circleRedSoliderHashMap.put(circle,redSoliders.get(i));
+            enemyCircles.add(circle);
+            enemySoliders.get(i).setCircle(circle);
+            circleRedSoliderHashMap.put(circle,enemySoliders.get(i));
             y+=30;
         }
         y=350;
@@ -223,9 +222,9 @@ public class Level2 {
         circle.setCenterY(y);
         circle.setCenterX(10);
         circle.setRadius(20);
-        redCircles.add(circle);
-        redSoliders.get(279).setCircle(circle);
-        circleRedSoliderHashMap.put(circle,redSoliders.get(279));
+        enemyCircles.add(circle);
+        enemySoliders.get(279).setCircle(circle);
+        circleRedSoliderHashMap.put(circle,enemySoliders.get(279));
         final int[] n = {0};
         AnimationTimer animationTimer;
         animationTimer=new AnimationTimer() {
@@ -260,10 +259,10 @@ public class Level2 {
                         }
                     }
                 });
-                for (Circle circle:redCircles){
+                for (Circle circle:enemyCircles){
                     for (Circle circle1:ourCircles) {
                         if (circle.getCenterX() < circle1.getCenterX() - circleOurSoliderMap.get(circle1).getFieldOfView() * 10) {
-                            circle.setCenterX(circle.getCenterX() + redSoliders.get(0).getXSpeed() * 0.05);
+                            circle.setCenterX(circle.getCenterX() + enemySoliders.get(0).getXSpeed() * 0.05);
                         } else {
                             if (circle1.getCenterY() < 650) {
                                 circle1.setCenterX(circle.getCenterX()-0.0001);
@@ -297,7 +296,7 @@ public class Level2 {
             }
         };
         animationTimer.start();
-        root.getChildren().addAll(redCircles);
+        root.getChildren().addAll(enemyCircles);
         root.getChildren().addAll(ourCircles);
     }
 

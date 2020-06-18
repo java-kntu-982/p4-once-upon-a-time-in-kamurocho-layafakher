@@ -180,9 +180,7 @@ public class Controller {
                     label.setScaleX(1);
                 }
             });
-
-
-        }
+                }
             }
         }
         Group group=new Group(imageView);
@@ -407,7 +405,6 @@ public class Controller {
                                     }
                                 }
                             });
-
                         }
                     }
                 }
