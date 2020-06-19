@@ -50,7 +50,7 @@ public class Level2 {
         round1();
         boolean b=false;
         for (EnemySolider enemySolider:circleRedSoliderHashMap.values()){
-            if (enemySolider.isAlive())
+            if (enemySolider.isAlive()&&Main.container.getDurability()>=0&&Main.van.getDurability()>=0)
                 b=true;
         }
         if (b){
@@ -261,7 +261,7 @@ public class Level2 {
                 });
                 for (Circle circle:enemyCircles){
                     for (Circle circle1:ourCircles) {
-                        if (circle.getCenterX() < circle1.getCenterX() - circleOurSoliderMap.get(circle1).getFieldOfView() * 10) {
+                        if (circle.getCenterX() < circle1.getCenterX() - circleOurSoliderMap.get(circle1).getFieldOfView()) {
                             circle.setCenterX(circle.getCenterX() + enemySoliders.get(0).getXSpeed() * 0.05);
                         } else {
                             if (circle1.getCenterY() < 650) {
@@ -270,7 +270,7 @@ public class Level2 {
                             else {
                                 circle1.setCenterY(0);
                             }
-                            circleOurSoliderMap.get(circle1).setHealth(circleOurSoliderMap.get(circle1).getHealth() - (0.005 ));
+                            circleOurSoliderMap.get(circle1).setHealth(circleOurSoliderMap.get(circle1).getHealth() - (0.005));
                             circleRedSoliderHashMap.get(circle).setHealth(circleRedSoliderHashMap.get(circle).getHealth() - (0.005 * circleOurSoliderMap.get(circle1).getAttack()));
                             if (circleRedSoliderHashMap.get(circle).getHealth()<=0) {
                                 circleRedSoliderHashMap.get(circle).setAlive(false);
